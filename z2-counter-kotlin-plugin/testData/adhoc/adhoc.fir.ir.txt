@@ -1,0 +1,35 @@
+FILE fqName:foo.bar fileName:/adhoc.kt
+  FUN name:stuff visibility:public modality:FINAL <> () returnType:kotlin.Unit
+    BLOCK_BODY
+      CALL 'public final fun increment (fileName: kotlin.String, functionName: kotlin.String, line: kotlin.Int, offset: kotlin.Int): kotlin.Unit declared in hu.simplexion.z2.counter.runtime.Counters' type=kotlin.Unit origin=null
+        $this: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Counters modality:FINAL visibility:public superTypes:[kotlin.Any]' type=hu.simplexion.z2.counter.runtime.Counters
+        fileName: CONST String type=kotlin.String value="adhoc.kt"
+        functionName: CONST String type=kotlin.String value="stuff"
+        line: CONST Int type=kotlin.Int value=5
+        offset: CONST Int type=kotlin.Int value=1
+  FUN name:box visibility:public modality:FINAL <> () returnType:kotlin.String
+    BLOCK_BODY
+      CALL 'public final fun increment (fileName: kotlin.String, functionName: kotlin.String, line: kotlin.Int, offset: kotlin.Int): kotlin.Unit declared in hu.simplexion.z2.counter.runtime.Counters' type=kotlin.Unit origin=null
+        $this: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Counters modality:FINAL visibility:public superTypes:[kotlin.Any]' type=hu.simplexion.z2.counter.runtime.Counters
+        fileName: CONST String type=kotlin.String value="adhoc.kt"
+        functionName: CONST String type=kotlin.String value="box"
+        line: CONST Int type=kotlin.Int value=9
+        offset: CONST Int type=kotlin.Int value=1
+      BLOCK type=kotlin.Unit origin=FOR_LOOP
+        VAR FOR_LOOP_ITERATOR name:tmp_0 type:kotlin.collections.IntIterator [val]
+          CALL 'public open fun iterator (): kotlin.collections.IntIterator [fake_override,operator] declared in kotlin.ranges.IntRange' type=kotlin.collections.IntIterator origin=FOR_LOOP_ITERATOR
+            $this: CALL 'public final fun rangeTo (other: kotlin.Int): kotlin.ranges.IntRange [operator] declared in kotlin.Int' type=kotlin.ranges.IntRange origin=RANGE
+              $this: CONST Int type=kotlin.Int value=0
+              other: CONST Int type=kotlin.Int value=123
+        WHILE label=null origin=FOR_LOOP_INNER_WHILE
+          condition: CALL 'public abstract fun hasNext (): kotlin.Boolean [fake_override,operator] declared in kotlin.collections.IntIterator' type=kotlin.Boolean origin=FOR_LOOP_HAS_NEXT
+            $this: GET_VAR 'val tmp_0: kotlin.collections.IntIterator [val] declared in foo.bar.box' type=kotlin.collections.IntIterator origin=null
+          body: BLOCK type=kotlin.Unit origin=FOR_LOOP_INNER_WHILE
+            VAR FOR_LOOP_VARIABLE name:i type:kotlin.Int [val]
+              CALL 'public final fun next (): kotlin.Int [operator] declared in kotlin.collections.IntIterator' type=kotlin.Int origin=FOR_LOOP_NEXT
+                $this: GET_VAR 'val tmp_0: kotlin.collections.IntIterator [val] declared in foo.bar.box' type=kotlin.collections.IntIterator origin=null
+            CALL 'public final fun stuff (): kotlin.Unit declared in foo.bar' type=kotlin.Unit origin=null
+      CALL 'public final fun println (message: kotlin.Any?): kotlin.Unit [inline] declared in kotlin.io.ConsoleKt' type=kotlin.Unit origin=null
+        message: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Counters modality:FINAL visibility:public superTypes:[kotlin.Any]' type=hu.simplexion.z2.counter.runtime.Counters
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in foo.bar'
+        CONST String type=kotlin.String value="OK"

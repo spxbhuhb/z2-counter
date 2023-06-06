@@ -1,0 +1,38 @@
+FILE: simple.kt
+    package foo.bar
+
+    public final var manualCounter: R|kotlin/Long| = Long(0)
+        public get(): R|kotlin/Long|
+        public set(value: R|kotlin/Long|): R|kotlin/Unit|
+    public final fun stuff(): R|kotlin/Unit| {
+         {
+            lval <unary>: R|kotlin/Long| = R|foo/bar/manualCounter|
+            R|foo/bar/manualCounter| = R|<local>/<unary>|.R|kotlin/Long.inc|()
+            R|<local>/<unary>|
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+         {
+            lval <iterator>: R|kotlin/collections/IntIterator| = Int(0).R|kotlin/Int.rangeTo|(Int(123)).R|kotlin/ranges/IntProgression.iterator|()
+            while(R|<local>/<iterator>|.R|SubstitutionOverride<kotlin/collections/IntIterator.hasNext: R|kotlin/Boolean|>|()) {
+                lval i: R|kotlin/Int| = R|<local>/<iterator>|.R|kotlin/collections/IntIterator.next|()
+                 {
+                    R|foo/bar/stuff|()
+                }
+
+            }
+
+        }
+
+        R|kotlin/io/println|(Q|hu/simplexion/z2/counter/runtime/Counters|)
+        ^box when () {
+            ==(Q|hu/simplexion/z2/counter/runtime/Counters|.R|hu/simplexion/z2/counter/runtime/Counters.counters|.R|SubstitutionOverride<kotlin/collections/MutableMap.get: R|kotlin/Long?|>|(String(simple.kt:stuff:6:0)), R|foo/bar/manualCounter|) ->  {
+                String(OK)
+            }
+            else ->  {
+                String(Fail)
+            }
+        }
+
+    }
