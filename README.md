@@ -4,7 +4,9 @@
 
 Counter is a Kotlin compiler plugin that counts how many times a function is called.
 
-The plugin is in **I'll write it because of this infinite loop I can't find** status.
+Project status is: I'll write it because of this infinite loop I can't find.
+
+**The plugin has a VERY, VERY, VERY heavy impact on performance. Do NOT keep it active!**
 
 Example:
 
@@ -34,7 +36,36 @@ adhoc.kt:stuff:4:0 124
 
 ## Dependencies
 
-Not available yet. They will come eventually, when I figure out why it does not add the constructors.
+Check the [integration](z2-counter-integration) project for a working example.
+
+Into `settings.gradle.kts`
+
+```kotlin
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
+    }
+}
+```
+
+Into `build.gradle.kts`
+
+```kotlin
+plugins {
+    id("hu.simplexion.z2.counter") version "0.1.0"
+}
+
+repositories {
+    maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
+}
+
+sourceSets["commonMain"].dependencies {
+    implementation("hu.simplexion.z2:z2-counter-runtime:0.1.0")
+}
+```
 
 ## License
 
@@ -51,3 +82,20 @@ Not available yet. They will come eventually, when I figure out why it does not 
 > WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 > See the License for the specific language governing permissions and
 > limitations under the License.
+
+## P.S.
+
+I've found the loop in like 1 minute after adding the plugin to the project. Bad, bad `LeaseRecipient`!
+
+```text
+LeaseRecipient.kt:run:30:22 88166
+LeaseRecipient.kt:<get-messages>:23:14 88167
+Transaction.kt:<init>:13:1 16
+Engine.kt:<anonymous>:105:51 16
+```
+
+I've added this to the `main.kt` of `jsMain`:
+
+```kotlin
+window.setInterval({ println(Counters) }, 5000)
+```
